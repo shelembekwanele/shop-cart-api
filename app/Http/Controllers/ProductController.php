@@ -7,30 +7,64 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function products(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $products = Product::paginate(10);
-
-        return response()->json($products, 200);
+        return Product::paginate(10);
     }
 
-    public function add_product(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        return response()->json($product, 200);
+        $request->validate([
+            'name' => 'required',
+            'price' => ['required', 'integer'],
+            'description' => 'required',
+            'in_stock' => ['required', 'boolean'],
+            'image_url' => ['required', 'url'],
+        ]);
+        return Product::create($request->all());
     }
 
-    public function get_product(Request $request)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        $product = Product::find($request->id);
-
-        return response()->json($product, 200);
+        return Product::find($id);
     }
 
-    public function delete_product(Request $request)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        $product = Product::find($request->id);
-        $product->delete();
-        return response()->json($product, 200);
+        $request->validate([
+            'name' => 'required',
+            'price' => ['required', 'integer'],
+            'description' => 'required',
+            'in_stock' => ['required', 'boolean'],
+            'image_url' => ['required', 'url'],
+        ]);
+
+        $product = Product::find($id);
+
+        $product->update($request->all());
+
+        return $product;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $product = Product::find($id);
+
+        return $product;
     }
 }
