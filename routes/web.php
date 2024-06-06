@@ -6,7 +6,3 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get("/register", [AuthController::class, "register"]);
-Route::get("/login", [AuthController::class, "login"])->name("login");
-Route::get("/users", [AuthController::class, "users"]);

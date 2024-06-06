@@ -65,10 +65,4 @@ class AuthController extends Controller
         }
 
     }
-
-    public function users(Request $request)
-    {
-        $users = User::all();
-        return $users;
-    }
 }
