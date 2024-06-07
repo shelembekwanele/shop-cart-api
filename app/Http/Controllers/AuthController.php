@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Cart;
 
 class AuthController extends Controller
 {
@@ -56,7 +57,11 @@ class AuthController extends Controller
                 return response()->json(["message" => "user account for " . $data['email'] . " already exists please login."], 400);
             }
 
-            $user = User::create($data);
+            $cart = Cart::create();
+
+            $user = User::create([...$data, 'cart_id' => $cart->id]);
+
+            $cart->update(['user_id' => $user->id]);
 
             return response()->json($user);
 
