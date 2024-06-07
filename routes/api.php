@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-    Route::get('/cart', [CartController::class, 'show']);
-    Route::post('/cart/{id}', [CartController::class, 'append_product']);
-    Route::delete('/cart/{id}', [CartController::class, 'destroy_product']);
+    Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+    Route::post('/cart/{id}', [CartController::class, 'append_product'])->name('cart.append');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy_product'])->name('cart.destroy');
 });
