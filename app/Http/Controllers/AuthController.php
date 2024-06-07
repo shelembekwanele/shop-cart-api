@@ -57,11 +57,9 @@ class AuthController extends Controller
                 return response()->json(["message" => "user account for " . $data['email'] . " already exists please login."], 400);
             }
 
-            $cart = Cart::create();
+            $user = User::create($data);
 
-            $user = User::create([...$data, 'cart_id' => $cart->id]);
-
-            $cart->update(['user_id' => $user->id]);
+            $user->cart()->create();
 
             return response()->json($user);
 
