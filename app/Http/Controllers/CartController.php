@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -16,11 +17,18 @@ class CartController extends Controller
         return auth()->user()->cart;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function append_product(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        auth()->user()->cart->products()->save($product);
+        auth()->user()->cart->products;
+        return auth()->user()->cart;
+    }
+
+    public function destroy_product(string $id)
+    {
+        auth()->user()->cart->products()->find($id)->delete($id);
+        auth()->user()->cart->products;
+        return auth()->user()->cart;
     }
 }
