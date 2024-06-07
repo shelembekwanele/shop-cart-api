@@ -12,6 +12,7 @@ class CartController extends Controller
      */
     public function show()
     {
+        auth()->user()->cart->products;
         return auth()->user()->cart;
     }
 
