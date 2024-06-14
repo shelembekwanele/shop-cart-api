@@ -27,7 +27,7 @@ class CartController extends Controller
 
     public function destroy_product(string $id)
     {
-        auth()->user()->cart->products()->find($id)->delete($id);
+        auth()->user()->cart->products()->detach($id);
         auth()->user()->cart->products;
         return auth()->user()->cart;
     }
