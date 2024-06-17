@@ -2,6 +2,8 @@
 
 This is a Shopping Cart API built with Laravel. The API provides functionality for user authentication, product management, and shopping cart management.
 
+API is live at [Live Demo](https://shop-cart-api.up.railway.app/)🎉
+
 ## Table of Contents
 
 -   [Installation](#installation)
