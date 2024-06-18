@@ -42,30 +42,32 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        try {
-            $data = $request->validate([]);
+        // try {
+        //     $data = $request->validate([]);
 
-            $exists = User::where('email', $data['email'])->first();
+        //     $exists = User::where('email', $data['email'])->first();
 
-            if ($exists) {
-                return response()->json(["message" => "User account for " . $data['email'] . " already exists. Please login."], 400);
-            }
+        //     if ($exists) {
+        //         return response()->json(["message" => "User account for " . $data['email'] . " already exists. Please login."], 400);
+        //     }
 
-            $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
+        //     $user = User::create([
+        //         'name' => $data['name'],
+        //         'email' => $data['email'],
+        //         'password' => Hash::make($data['password']),
+        //     ]);
 
-            $user->cart()->create();
+        //     $user->cart()->create();
 
-            return response()->json([
-                'message' => 'User registered successfully',
-                'user' => $user
-            ], 201);
+        //     return response()->json([
+        //         'message' => 'User registered successfully',
+        //         'user' => $user
+        //     ], 201);
 
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 400);
-        }
+        // } catch (\Throwable $th) {
+        //     return response()->json(['error' => $th->getMessage()], 400);
+        // }
+
+        return response()->json($request);
     }
 }
