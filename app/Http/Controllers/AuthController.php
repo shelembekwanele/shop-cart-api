@@ -68,6 +68,6 @@ class AuthController extends Controller
         //     return response()->json(['error' => $th->getMessage()], 400);
         // }
 
-        return response()->json($request);
+        return response()->json($request->all());
     }
 }
