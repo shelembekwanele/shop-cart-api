@@ -43,7 +43,11 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            $data = $request->validate([]);
+            $data = $request->validate([
+                'email' => ['required', 'email'],
+                "password" => ["required", "min:8"],
+                'name' => ['required', 'max:200'],
+            ]);
 
             $exists = User::where('email', $data['email'])->first();
 
