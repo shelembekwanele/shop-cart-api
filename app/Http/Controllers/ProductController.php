@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::paginate(10);
+        return Product::all();
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => ['required', 'integer'],
             'description' => 'required',
-            'in_stock' => ['required', 'boolean'],
+            // 'in_stock' => ['required', 'boolean'],
             'image_url' => ['required', 'url'],
         ]);
         return Product::create($request->all());
@@ -47,7 +47,7 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => ['required', 'integer'],
             'description' => 'required',
-            'in_stock' => ['required', 'boolean'],
+            // 'in_stock' => ['required', 'boolean'],
             'image_url' => ['required', 'url'],
         ]);
 
